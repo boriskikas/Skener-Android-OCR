@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.util.SparseArray;
@@ -135,19 +136,24 @@ public class MainActivity extends AppCompatActivity {
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
                     cameraSource.start(surfaceView.getHolder());
+
                 } catch (IOException e) {
+
                     e.printStackTrace();
                 }
             }
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
             }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
+                SystemClock.sleep(2000);
                 cameraSource.stop();
             }
+
         });
 
 
@@ -192,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonStart(View view){
         setContentView(R.layout.surfaceview);
+
         textRecognizer();
     }
 }
